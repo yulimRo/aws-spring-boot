@@ -2,6 +2,7 @@ package com.project.awsspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /*
   @SpringBootApplication
@@ -12,7 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
   SpringApplication.run()
   - 내장 was가 구동된다.
 
+  @EnableJpaAuditing
+  - JPA Auditing 어노테이션들을 모두 활성화
+
  */
+@EnableJpaAuditing
 @SpringBootApplication
 public class Application {
     public static void main (String[] args){

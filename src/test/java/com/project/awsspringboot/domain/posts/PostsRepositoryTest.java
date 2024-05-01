@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,24 +39,45 @@ public class PostsRepositoryTest {
     public void cleanup(){
         //postsRepository.deleteAll();
     }
+//
+//    @Test
+//    public void 게시글저장_불러오기(){
+//        String title = "타이틀";
+//        String content = "내용";
+//
+//        postsRepository.save(Posts.builder()
+//                .title(title)
+//                .content(content)
+//                .author("저자").build());
+//
+//        List<Posts> postsList = postsRepository.findAll();
+//
+//        Posts post = postsList.get(0);
+//
+//        assertThat(post.getTitle()).isEqualTo(title);
+//        assertThat(post.getContent()).isEqualTo(content);
+//        assertThat(post.getAuthor()).isEqualTo("저자");
+//
+//    }
 
     @Test
-    public void 게시글저장_불러오기(){
-        String title = "타이틀";
-        String content = "내용";
+    public void BaseTimeEntity_등록() {
+        LocalDateTime now = LocalDateTime.of(2024,5,1,0,0,0);
 
         postsRepository.save(Posts.builder()
-                .title(title)
-                .content(content)
-                .author("저자").build());
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
 
         List<Posts> postsList = postsRepository.findAll();
 
-        Posts post = postsList.get(0);
+        Posts posts = postsList.get(0);
 
-        assertThat(post.getTitle()).isEqualTo(title);
-        assertThat(post.getContent()).isEqualTo(content);
-        assertThat(post.getAuthor()).isEqualTo("저자");
+        System.out.println(">>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate="+ posts.getModifiedDate());
 
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
+
 }
