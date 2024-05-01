@@ -14,6 +14,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /*
+    @RunWith(SpringRunner.class)
+    - 테스트를 진행할 때 Junit에 내장된 실행자 외에 다른 실행자를 실행 시킨다.
+    - 여기서는 SpringRunner라는 스프링 실행자를 사용
+    - 즉, 스프링부트 테스트와 Junit 사이에 연결자 역할을 한다.
+
+    @WebMvcTest
+    - 여러 스프링 테스트 어노테이션 중 'Web'에 집중할 수 있는 어노테이션
+    - 선언할 경우, @Controller, @ControllerAdvice등을 사용할 수 있다.
+    - @Service, @Component, @Repository등은 사용할 수 없다.
+    - 여기선 컨트롤러만 사용하기 때문에 선언한다.
+
     MockMvc
     - 웹 API 테스트할 때 사용
     - 스프링 MVC테스트의 시적점
@@ -53,6 +64,13 @@ public class HelloControllerTest {
         int amount = 10000;
 
         /*
+
+            param
+            - API 테스트할 때 사용될 요청 파라미터를 설정
+            - 단, 값은 String만 허용
+            - 그래서 숫자/날짜등의 데이터도 등록할대 문자열로 변경해야만 가능
+
+
             jsonPath
             - JSON 응답값을 필드별로 검증할 수 있는 메서드
             - $를 기준으로 필드명을 명시합니다.
