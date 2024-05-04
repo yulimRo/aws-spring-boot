@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     - 테이블 posts에 insert/update 쿼리를 실행
     - id 값이 있다면 update, id가 없다면, insert 쿼리가 실행
 
-    @postsRepository.findAll
+    @postsRepository.findAlln
     - 테이블 posts에 있는 모든 데이터를 조회해오는 메서드
 
     [참고]
