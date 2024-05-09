@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        //springBootVersion = '2.1.7.RELEASE' 그냥 버전 살짝 올리기.
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        //jcenter() deprecated
+        //jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.healthgard.server'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    //jcenter() deprecated
+    //jcenter()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    implementation('org.projectlombok:lombok')
+    //gradle5.x버전 부터 추가
+    annotationProcessor('org.projectlombok:lombok')
+
+    /*
+        spring-boot-starter-data-jpa
+        - 스프링부트용 Spring Data JPA 추상화 라이브러리
+        - 스프링부트 버전에 맞춰 자동으로 JPA관련 라이브러리들의 버전을 관리
+
+        h2
+        -인메모리 관계형 데이터 베이스
+        -별도의 설치가 필요없이 프로젝트 의존성만으로 관리
+        -메모리에서 실행되기 때문에 애플리케이션을 재시작할 때마다 초기화됨
+     */
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
+
+    implementation('org.springframework.boot:spring-boot-starter-mustache');
+
+
+}
