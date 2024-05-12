@@ -6,6 +6,22 @@
         <div class="col-md-6">
             <!-- 글등록 페이지 등록 -->
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            <!--
+                머스테치는 다른 언어와 같은 if문을 제공하지 않는다.
+                ture/false 여부만 판단할 뿐
+                머스테치에서는 항상 최종값을 넘겨줘야함
+            -->
+            {{#userName}}
+                Logged in as : <span id="user">{{userName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">로그아웃</a>
+            {{/userName}}
+            <!--
+                해당 값이 존재하지 않는 경우네는 ^를 사용한다.
+                userName이 없다면 로그인 버튼을 노출시키도록 구성
+            -->
+            {{^userName}}
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/userName}}
         </div>
     </div>
 </div>
